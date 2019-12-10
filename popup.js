@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-
     const bg = chrome.extension.getBackgroundPage();
 
     init();

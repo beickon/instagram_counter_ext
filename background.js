@@ -2,6 +2,7 @@ window.username = '';
 window.profilePic = '';
 window.followersCount = 0;
 
+
 function fetchData(username) {
     fetch(`http://www.instagram.com/${username}?__a=1`)
         .then(r => r.text())
@@ -13,20 +14,19 @@ function fetchData(username) {
     });
 }
 
-chrome.runtime.onMessage.addListener(function(request, sender, response){
-    window.username = request.username;
-    window.followersCount = request.followersCount;
+function init() {
+    username ? fetchData(username) : console.log('no user')
+};
+
+function setUsername() {
+    chrome.storage.sync.get(['insta_username'], function (result) {
+        username = result['insta_username'];
+        init();
+    });
+}
+
+chrome.storage.onChanged.addListener(function () {
+    setUsername();
 });
 
-chrome.runtime.onMessage.addListener(
-    function (request, sender, sendResponse) {
-        switch (request.type) {
-            case 'fetchData':
-                fetchData(request.username);
-                sendResponse({ response: "FETCHED" });
-                break;
-            default:
-                break;
-        }
-    }
-);
+setUsername();
