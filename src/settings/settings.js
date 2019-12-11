@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
     displayMessageCard('success-card', 'none');
     document.getElementById('save-button').addEventListener('click', onClickSave, false);
 
-    //TODO create a util file with this function
     function setUsernameOnInput () {
         chrome.storage.sync.get(['insta_username'], function (result) {
             if (result.insta_username) document.getElementById('username').value = result.insta_username;

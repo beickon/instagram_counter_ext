@@ -1,14 +1,14 @@
 {
   "name": "Instagram Counter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "manifest_version": 2,
   "browser_action": {
-    "default_popup": "popup.html",
+    "default_popup": "./src/popup/popup.html",
     "default_title": "Instagram Counter",
     "default_icon": "./src/img/logo.png"
   },
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["./src/background/background.js"],
     "persistent": false
   },
   "permissions": ["activeTab", "tabs", "storage", "https://www.instagram.com/*"]
